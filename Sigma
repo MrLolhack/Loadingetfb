@@ -173,7 +173,33 @@ local logQueue = {
     {t = "> WARNING: Obfuscation layer detected. Decrypting...", c = Color3.fromRGB(255, 200, 100)},
     {t = "> Memory patch applied at 0x7FF8A2", c = Color3.fromRGB(200, 200, 200)},
     {t = "> Spoofing client environment...", c = Color3.new(1,1,1)},
-    {t = "> Bypassing server-side heartbeats...", c = Color3.fromRGB(255, 100, 150)}
+    {t = "> Bypassing server-side heartbeats...", c = Color3.fromRGB(255, 100, 150)},
+    {t = "> Intercepting RemoteEvent traffic...", c = Color3.fromRGB(100, 200, 255)},
+    {t = "> Overriding environment getgenv()...", c = Color3.fromRGB(255, 255, 100)},
+    {t = "> Injecting shellcode into task scheduler...", c = Color3.fromRGB(200, 100, 255)},
+    {t = "> Nullifying anti-cheat callback loops...", c = Color3.fromRGB(255, 80, 80)},
+    {t = "> Establishing encrypted tunnel [AES-256]...", c = Color3.fromRGB(150, 255, 150)},
+    {t = "> Patching '__index' metamethod hooks...", c = Color3.fromRGB(100, 255, 200)},
+    {t = "> Disabling client-side logging service...", c = Color3.fromRGB(200, 200, 200)},
+    {t = "> Redirecting crash dumps to /dev/null...", c = Color3.fromRGB(170, 170, 170)},
+    {t = "> Validating hardware ID spoofing...", c = Color3.fromRGB(100, 150, 255)},
+    {t = "> Resolving internal pointer addresses...", c = Color3.fromRGB(220, 220, 220)},
+    {t = "> Bypassing Roblox security heartbeat...", c = Color3.fromRGB(255, 120, 180)},
+    {t = "> Masking execution signature...", c = Color3.fromRGB(150, 150, 255)},
+    {t = "> [OK] VM entry point modified.", c = Color3.fromRGB(100, 255, 100)},
+    {t = "> Cleaning stack trace for stealth...", c = Color3.fromRGB(255, 255, 255)},
+    {t = "> Manipulating register states...", c = Color3.fromRGB(200, 150, 255)},
+    {t = "> Syncing with local asset cache...", c = Color3.fromRGB(150, 255, 255)},
+    {t = "> Analyzing dynamic library dependencies...", c = Color3.fromRGB(230, 230, 230)},
+    {t = "> [WARN] Unrecognized opcode detected. Ignoring...", c = Color3.fromRGB(255, 180, 50)},
+    {t = "> Bypassing Hyperion user-mode checks...", c = Color3.fromRGB(255, 50, 50)},
+    {t = "> Injecting custom exploit API...", c = Color3.fromRGB(100, 255, 100)},
+    {t = "> Mapping virtual memory segments...", c = Color3.fromRGB(180, 180, 180)},
+    {t = "> Obfuscating script metadata...", c = Color3.fromRGB(255, 100, 255)},
+    {t = "> Locking memory constants...", c = Color3.fromRGB(100, 100, 255)},
+    {t = "> Waiting for game engine stability...", c = Color3.fromRGB(255, 255, 150)},
+    {t = "> Establishing bypass handshake...", c = Color3.fromRGB(150, 255, 180)},
+    {t = "> Finalizing module alignment...", c = Color3.fromRGB(200, 200, 255)}
 }
 
 local function addLog()
@@ -241,4 +267,3 @@ task.spawn(function()
         task.wait(3)
     end
 end)
-
